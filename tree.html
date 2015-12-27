@@ -1,0 +1,123 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Acme Fresh Delivery Foods</title>
+    <meta name="description" content="Welcome to Acme Fresh Foods">
+    <meta name="author" content="TIBCO Jaspersoft">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<!-- FancyTree Bootstrap theme -->
+    <link rel="stylesheet" href="css/ui.fancytree.min.css"/>
+    <!-- Google Font Arvo -->
+    <link href='css/fonts.css' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="css/acme.css" rel="stylesheet"> 
+
+	  <!-- Core JavaScript
+  ================================================== -->
+  <script src="js/jquery.min.js"></script>  
+  <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.fancytree-all.min.js"></script>
+  <script src="js/underscore-min.js"></script>
+  <script src="js/require.js"></script>
+  <script type='text/javascript' src="http://localhost:8080/jasperserver-pro/client/visualize.js"></script>
+  <script src="js/visualizeHelper.js"></script>
+  <script src="js/visualizeCascadingTree.js"></script>
+  <script src="js/productTree.js"></script>
+ 
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="acme-container">
+          <!-- header -->
+          <header>
+            <div class="masthead clearfix">
+              <div class="inner">
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                  <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                              Current Reports <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="top-sellers.html">Top Sellers</a></li>
+                                <li><a href="healthy-choices.html">Healthy Choices</a></li>
+                                <li><a href="go-green.html">Go Green</a></li>
+                            </ul>
+                        </li>  
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                              Tools <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="shipping-optimizer.html">Embedded Jaspersoft</a></li>
+                                <li><a href="internal.html">Data level security</a></li>
+                                <li><a href="dashboardhyperlink.html">Dashboards</a></li>
+                            </ul>
+                        </li> 
+                      </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                  </div>
+                  <!-- /.container-fluid -->
+                </nav>
+              </div>
+            </div>
+          </header>
+            
+			<!-- top sellers content -->
+			<a name="top-sellers"  ></a>
+			<div class="container-fluid">
+			<article class="col-top-sellers interior-article">
+				  <div class="row">
+					<div class="col-md-3 col-lg-3 col-xl-3 aux-col">
+						<div class="col-text">  
+							<h3>Product Performance</h3>
+							<p class="lead">Select a product category below and see transactions across brands.</p>
+							<div class="btn-toolbar" role="toolbar">
+							<button class="btn btn-success btn-large green-btn-custom green-inline-dropdown" onclick="runReport();">Run</button>
+							</div>
+						</div>
+						<div id="tree" style="height: 300px; overflow: auto;"></div>
+						<div class="col-text">  
+							<h3>Customer Location</h3>
+							<p class="lead">Select an area below and see transactions across brands.</p>
+						</div>
+						<div id="placeTree"></div>
+                    </div>
+                
+                    <div class="col-md-8 main-col col-top-sellers">
+						<div id="container" align="center"></div>
+					</div>
+			</article>
+          
+			  <footer>
+			    <div class="mastfoot">
+				  <div class="inner">
+				  <p>&copy; Acme Fresh Delivery Foods: a demonstration website for <a href="http://jaspersoft.com" target="_blank">TIBCO Analytics</a>.</p>
+				  </div>
+				</div>
+			  </footer>
+              
+		  </div>
+	  </div>
+  </div>
