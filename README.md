@@ -42,9 +42,9 @@ This page gives an overview of how cascading input controls work with Visualize.
 
 You need a JasperReports Server running at http://localhost:8080/jasperserver-pro with visualize.js available, ie. the commercial version.
 
-The base samples that come with the JasperReports Server - reports, users - and are installed in Jaspersoft evaluations need to be available.
+The base samples that come with the JasperReports Server - reports, users - nede to be deployed. These are installed in normal Jaspersoft evaluation instances.
 
-Import the 2 exports in <Git repository>/JasperReportsServer Resources into the JasperReports Server instance. 
+Import the 2 exports in "<this Git repository>/JasperReportsServer Resources" into the JasperReports Server instance. 
 
-Deploy the content of this repository to a web server.
+Deploy the content of this Git repository to a web server.
 
