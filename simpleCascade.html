@@ -1,0 +1,142 @@
+<html> 
+<head>
+<title>Cascading Input Controls</title>
+<script type="text/javascript" src="http://localhost:8080/jasperserver-pro/client/visualize.js"></script> 
+<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+</head>
+<body>
+<h2>Cascading Input Controls with visualize.js</h2>
+<p>Select the values in the controls below, from left to right.<br/>
+You will see the contents of the controls change.<br/>
+The report will update when you select a value from the rightmost control.</p>
+<table border="1">
+<tr>
+<td>Country</td>
+<td>State within Country</td>
+<td>Cities within State</td>
+<td>Customers within selected States (not Cities)</td>
+<tr/>
+<tr>
+<td>
+<select multiple id="Country_multi_selector"></select>
+</td>
+<td>
+<select multiple id="Cascading_state_multi_selector"></select>
+</td>
+<td>
+<select multiple id="Cascading_city_multi_selector"></select>
+</td>
+<td align="top">
+<select id="Cascading_name_single_selector"></select>
+</td>
+</tr>
+<tr>
+<td colspan=4">
+First page of report showing parameters passed or default values.
+</td>
+</tr>
+<tr>
+<td colspan=4">
+<div id="container"></div>
+</td>
+</tr>
+</table>
+
+<script type="text/javascript"> 
+
+var reportUri = "/public/Samples/Reports/Cascading_Customers";
+var report, inputControls; 
+visualize({
+    auth: {
+        name: "superuser",
+        password: "superuser"
+    }
+}, function (v) {
+    inputControls = v.inputControls({
+        resource: reportUri,
+        success: renderInputControls
+    });
+    report = v.report({ resource: reportUri, container: "#container" });
+	
+	// ...
+    $("#Country_multi_selector").on("change", updateCascade);
+	$("#Cascading_state_multi_selector").on("change", updateCascade);
+	$("#Cascading_city_multi_selector").on("change", updateCascade);
+	$("#Cascading_name_single_selector").on("change", function(){
+        //last control in cascade selected: update the report
+        report.params(getSelection()).run();
+    });
+});
+function getSelection(){
+    var countries = getSelectedValues("#Country_multi_selector");
+	var states = getSelectedValues("#Cascading_state_multi_selector");
+	var cities = getSelectedValues("#Cascading_city_multi_selector");
+	var customer = getSelectedValues("#Cascading_name_single_selector");
+	
+	var obj = {};
+	if (countries != undefined && countries.length > 0) {
+		obj.Country_multi_select = countries;
+	}
+	if (states != undefined && states.length > 0) {
+		obj.Cascading_state_multi_select = states;
+	}
+	if (cities != undefined && cities.length > 0) {
+		obj.Cascading_city_multi_select = cities;
+	}
+	if (customer != undefined && customer.length > 0) {
+		obj.Cascading_name_single_select = customer;
+	}
+	return obj;
+}
+function getSelectedValues(aSelector) {
+    var selectedValues = [];
+    var selector = $(aSelector); 
+	// if we don't get a valid selector, selector.length (of array) will = 0 and eval to false
+	if (selector == undefined || selector == null || !selector.length) {
+		throw "missing selector: " + aSelector;
+	}    
+    $(aSelector + " :selected").each(function(){
+        selectedValues.push($(this).val()); 
+    });
+	//console.log(aSelector);
+	//console.log(selectedValues)
+	return selectedValues;
+}
+
+function updateCascade(){
+    inputControls
+            .params(getSelection())
+            .run(function(data) {
+					renderInputControls(data);
+					//report.params(getSelection()).run();
+				});
+ }
+
+function renderInputControls(data) {
+	//console.log(data);
+
+	addOptions(data, "Country_multi_select");
+	addOptions(data, "Cascading_state_multi_select");
+	addOptions(data, "Cascading_city_multi_select");
+	addOptions(data, "Cascading_name_single_select");
+   
+}
+function addOptions(data, selectorId) {
+	var ic = _.findWhere(data, {id: selectorId});
+	// for this page, the selector names in HTML have "or" appended to them
+    var selector = $("#" + selectorId + "or"); 
+	// if we don't get a valid selector, selector.length (of array) will = 0 and eval to false
+	if (selector == undefined || selector == null || !selector.length) {
+		throw "missing selector: " + selectorId + "or";
+	} else if (ic == undefined || ic == null) {
+		throw "missing input control: " + selectorId;
+	}
+	selector.empty();
+    _.each(ic.state.options, function(option) {
+        selector.append("<option " + (option.selected ? "selected" : "") + " value='" + option.value + "'>" + option.label + "</option>");
+    });
+}
+</script> 
+</body> 
+</html>
