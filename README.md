@@ -12,7 +12,7 @@ In sample code: tree.html, treeDashboard.html
 
 In source: js/VisualizeCascadingTree.js
 
-VisualizeCascadingTree presents a hierarchical tree of values, based on the popular Javascript Fancytree control https://github.com/mar10/fancytree and visualize.js. Fancytree samples are here: http://wwwendt.de/tech/fancytree/demo/index.html
+VisualizeCascadingTree presents a hierarchical tree of values, based on the popular Fancytree JavaScript control https://github.com/mar10/fancytree and visualize.js. Fancytree samples are here: http://wwwendt.de/tech/fancytree/demo/index.html
 
 It is a reusable component to use in your own web application. There are many extension points you can use to customize the look and feel and interactivity to meet your requirements.
 
@@ -40,9 +40,9 @@ This page gives an overview of how cascading input controls work with Visualize.
 
 **Installing the Samples**
 
-You need a JasperReports Server running at http://localhost:8080/jasperserver-pro with visualize.js available, ie. the commercial version.
+You need a commercial JasperReports Server running at http://localhost:8080/jasperserver-pro with visualize.js available.
 
-The base samples that come with the JasperReports Server - reports, users - nede to be deployed. These are installed in normal Jaspersoft evaluation instances.
+The base samples that come with the JasperReports Server - reports, users - need to be deployed. These are installed in normal Jaspersoft evaluation instances.
 
 Import the 2 exports in "<this Git repository>/JasperReportsServer Resources" into the JasperReports Server instance. 
 
